@@ -1,14 +1,19 @@
 import { useQuery } from "@tanstack/react-query"
 import type { NextPage } from "next"
-import Head from "next/head"
 import { getAllProducts } from "../api"
 import ProductCard from "../components/ProductCard"
+import Loader from "../components/Shared/Loader"
 
 const Home: NextPage = () => {
   const { data, isLoading } = useQuery(["products"], getAllProducts)
-  if (isLoading) return <h1>Loading</h1>
+  if (isLoading)
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Loader />
+      </div>
+    )
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen ">
       <div className="flex flex-wrap justify-between py-4">
         {data &&
           data.map((product) => {

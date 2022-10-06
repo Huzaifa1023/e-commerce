@@ -6,3 +6,10 @@ export type Iproduct = {
     description:string,
     image:string
 }
+
+export type Isproduct = Iproduct & {
+    rating: {
+        count: number,
+        rate:3.9   
+    }
+}
