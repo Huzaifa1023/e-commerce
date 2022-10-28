@@ -38,4 +38,4 @@ const ProductCard = ({ product }: propType) => {
     </div>
   )
 }
-export default ProductCard
+export default React.memo(ProductCard)

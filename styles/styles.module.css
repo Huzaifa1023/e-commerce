@@ -1,0 +1,12 @@
+.cart_scroller {
+    height: calc(100vh - 4rem);
+    overflow-y: auto;
+    padding-bottom: 40px;
+}
+
+
+.cart_scroller::-webkit-scrollbar
+{
+    display: none;
+	
+}

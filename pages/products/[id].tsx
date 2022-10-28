@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useContext, useState, useCallback } from "react"
 import { NextPage } from "next"
 import Image from "next/image"
 import { useQuery } from "@tanstack/react-query"
@@ -9,10 +9,14 @@ import HighlightBadge from "../../components/Shared/HighlightBadge"
 import Loader from "../../components/Shared/Loader"
 import Rating from "../../components/Shared/Rating"
 import Button from "../../components/Shared/Button"
+import { CartContext } from "../../components/Cart/CartContext"
 
 const ProductDetails: NextPage = () => {
   const route = useRouter()
   const prodId = route.query?.id
+  const { carts, addToCart } = useContext(CartContext)
+  const [alreadyAdded, setAlreadyAdded] = useState(false)
+
   const { data, isLoading } = useQuery(
     [`product${prodId}`],
     () => getSinlgeProduct(prodId),
@@ -20,6 +24,22 @@ const ProductDetails: NextPage = () => {
       enabled: !!prodId,
     }
   )
+
+  const handleAddtoCart = useCallback(() => {
+    if (data) addToCart(data)
+  }, [addToCart, data])
+
+  useEffect(() => {
+    if (carts.length == 0) {
+      setAlreadyAdded(false)
+    }
+    for (let i = 0; i < carts.length; i++) {
+      if (carts[i].id == data?.id) {
+        setAlreadyAdded(true)
+      }
+    }
+  }, [carts, carts.length, data?.id])
+
   if (isLoading)
     return (
       <div className="w-screen h-screen flex justify-center items-center">
@@ -41,7 +61,11 @@ const ProductDetails: NextPage = () => {
           </div>
         </div>
         <div>
-          <Button text="Add To Cart" className="w-full mt-4" />
+          <Button
+            onClick={handleAddtoCart}
+            text={alreadyAdded ? "Already Added" : "Add To Cart"}
+            className="w-full mt-4"
+          />
         </div>
       </div>
     </div>

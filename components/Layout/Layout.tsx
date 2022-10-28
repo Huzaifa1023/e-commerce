@@ -6,7 +6,7 @@ type proppType = {
 }
 const Layout = ({ children }: proppType) => {
   const [showCart, setShowCart] = useState(false)
-
+  const login = false;
   const onShowCart = useCallback(() => {
     setShowCart(true)
   }, [])
@@ -17,8 +17,14 @@ const Layout = ({ children }: proppType) => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <Navbar showCart={onShowCart} />
-      <Cart show={showCart} hideCart={onHideCart} />
+      {
+        login &&
+        <>
+          <Navbar showCart={onShowCart} />
+          <Cart show={showCart} hideCart={onHideCart} />
+        </>
+      }
+
       {children}
     </div>
   )

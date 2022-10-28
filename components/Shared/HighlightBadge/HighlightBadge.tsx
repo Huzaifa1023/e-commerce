@@ -8,4 +8,4 @@ const HighlightBadge = ({ title }: { title: string | number }) => {
   )
 }
 
-export default HighlightBadge
+export default React.memo(HighlightBadge)

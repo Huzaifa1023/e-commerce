@@ -14,4 +14,4 @@ const Rating = ({ rating }: { rating: number }) => {
     </div>
   )
 }
-export default Rating
+export default React.memo(Rating)

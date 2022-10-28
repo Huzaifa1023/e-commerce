@@ -3,6 +3,7 @@ import type { NextPage } from "next"
 import { getAllProducts } from "../api"
 import ProductCard from "../components/ProductCard"
 import Loader from "../components/Shared/Loader"
+import Modal from "../components/Shared/Modal"
 
 const Home: NextPage = () => {
   const { data, isLoading } = useQuery(["products"], getAllProducts)
@@ -12,6 +13,7 @@ const Home: NextPage = () => {
         <Loader />
       </div>
     )
+
   return (
     <main className="min-h-screen ">
       <div className="flex flex-wrap justify-between py-4">
