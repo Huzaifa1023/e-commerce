@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useState } from "react"
-import { Isproduct } from "../../model/responseType"
+import { Isproduct } from "../model/responseType"
 
 export type contextType = {
   carts: Isproduct[] | []

@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { login } from '../api';
 import Button from '../components/Shared/Button';
 import Input from '../components/Shared/Input/Input';
+import { ThemeContext } from '../Context/ThemeContext';
 
 const Login = () => {
+    const {notification,showNotification} = useContext(ThemeContext)
     const [credentials, setCredentials] = useState({
         username: "",
         password:""
     })
-
     const disabled = credentials.username.length < 1 || credentials.password.length < 1;
 
-    console.log(credentials)
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         setCredentials((prevState) => {
             return {
@@ -22,9 +22,9 @@ const Login = () => {
     }   
 
     const handleLogin = async () => {
-        const {username,password} = credentials
-        const response = await login(username, password)
-        console.log(response);
+        // const {username,password} = credentials
+        // const response = await login(username, password)
+        showNotification("login succesfull","success")
     }
 
     return (

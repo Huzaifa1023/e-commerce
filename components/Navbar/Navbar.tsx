@@ -2,7 +2,7 @@
 import Link from "next/link"
 import React, { useContext } from "react"
 import { BsCart } from "react-icons/bs"
-import { CartContext, contextType } from "../Cart/CartContext"
+import { CartContext, contextType } from "../../Context/CartContext"
 
 const Navbar = ({ showCart }: { showCart: () => void }) => {
   const { carts }: contextType = useContext(CartContext)

@@ -9,7 +9,7 @@ import HighlightBadge from "../../components/Shared/HighlightBadge"
 import Loader from "../../components/Shared/Loader"
 import Rating from "../../components/Shared/Rating"
 import Button from "../../components/Shared/Button"
-import { CartContext } from "../../components/Cart/CartContext"
+import { CartContext } from "../../Context/CartContext"
 
 const ProductDetails: NextPage = () => {
   const route = useRouter()

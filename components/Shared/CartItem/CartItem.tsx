@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react"
 import { Isproduct } from "../../../model/responseType"
 import Counter from "../Counter"
 import { AiTwotoneDelete } from "react-icons/ai"
-import { CartContext } from "../../Cart/CartContext"
+import { CartContext } from "../../../Context/CartContext"
 
 const CartItem = ({ cart }: { cart: Isproduct }) => {
   const { removeFromCart } = useContext(CartContext)
