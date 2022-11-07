@@ -8,6 +8,7 @@ import helper from '../utils/helper';
 const Login = () => {
     const { showNotification } = useContext(ThemeContext)
     const { setToLocalStorage, getLocalStorage } = helper;
+    const [loading, setLoading] = useState(false);
     const authenticated = getLocalStorage("auth");
     const router = useRouter();
     
@@ -34,6 +35,7 @@ const Login = () => {
     }   
 
     const handleLogin = async () => {
+        setLoading(true)
         const {username,password} = credentials
         const response = await login(username, password)
         if (response.success) {
@@ -42,6 +44,7 @@ const Login = () => {
         } else {
             showNotification(response.errors.length > 0 ?  response.errors[0] : response.message,"danger")
         }
+        setLoading(false);
     }
 
 
@@ -53,7 +56,7 @@ const Login = () => {
                     <Input onChange={handleChange} type='text' placeholder='username' name='username' className='my-2' />
                     <Input onChange={handleChange} type='password' placeholder='password' name='password' className='my-2'  />
                 </div>
-                <Button onClick={handleLogin} text='Login' disabled={disabled} className='w-full mt-8' />
+                <Button isLoading={loading} onClick={handleLogin} text='Login' disabled={disabled || loading} className='w-full mt-8' />
             </div>
         </div>
     )

@@ -8,6 +8,7 @@ import helper from "../../utils/helper"
 import Avatar from "../Shared/Avatar"
 import { MdDarkMode,MdOutlineLightMode } from 'react-icons/md';
 import { useTheme } from "next-themes"
+import User from "../User"
 
 const Navbar = ({ showCart }: { showCart: () => void }) => {
   const { theme, setTheme } = useTheme();
@@ -18,7 +19,6 @@ const Navbar = ({ showCart }: { showCart: () => void }) => {
   const toggelTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
-  console.log(theme,'theme')
   return (
     <div className="flex justify-between items-center py-4 px-8 bg-primaryLight">
       <Link href={"/"}>
@@ -35,7 +35,11 @@ const Navbar = ({ showCart }: { showCart: () => void }) => {
           <BsCart size={20} className="text-primaryLight" />
         </div>
         <div className="mx-3">
-          <Avatar title={user?.name} />
+          {/* <Avatar title={user?.name} />
+           */}
+          { user &&
+            <User user={user} />
+          }
         </div>
         <div>
           <Avatar onClick={toggelTheme} icon={theme === 'light' ? <MdDarkMode size={20} className="text-primaryLight" /> : <MdOutlineLightMode size={20} className="text-primaryLight"/>} />
