@@ -4,11 +4,14 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: "#ffa000",
-        primaryLight: "#ffffad",
+        primary: "#112A46",
+        primaryLight: "#ACC8E5",
+        primaryDark: "#0f172a",
+        secondaryDark:"#334155"
       },
     },
   },

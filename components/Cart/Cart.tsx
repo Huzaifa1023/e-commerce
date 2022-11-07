@@ -16,7 +16,7 @@ const Cart = ({ show = false, hideCart }: propType) => {
   const [openModal, setModalOpen] = useState(false);
   return (
     <div
-      className={`min-h-screen shadow-lg w-1/4 fixed transition-all top-0 z-10 bg-white ${
+      className={`min-h-screen shadow-lg w-1/4 fixed transition-all top-0 z-10 bg-gray-100 dark:bg-primaryDark ${
         show ? "right-0" : "left-full"
       }`}
     >
@@ -25,11 +25,11 @@ const Cart = ({ show = false, hideCart }: propType) => {
       </Modal>
       <div className="h-16 px-4 flex justify-between items-center">
         <MdCancel
-          className="text-primary cursor-pointer"
+          className="text-primary dark:text-secondaryDark cursor-pointer"
           size={30}
           onClick={hideCart}
         />
-        <h3 className="text-2xl text-primary">Cart</h3>
+        <h3 className="text-2xl text-primary dark:text-secondaryDark">Cart</h3>
       </div>
       <div className={styles.cart_scroller}>
         {carts.map((cart) => {

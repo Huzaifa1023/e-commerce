@@ -49,7 +49,7 @@ const ProductDetails: NextPage = () => {
   return (
     <div className="flex items-center flex-col py-8">
       <div className="w-3/4 md:w-1/2 lg:w-1/3">
-        <div className="shadow-md rounded-md px-4 py-4">
+        <div className="shadow-md rounded-md px-4 py-4 dark:bg-secondaryDark">
           <div className="flex justify-center py-2">
             <Image src={data?.image || ""} alt="" width={200} height={200} />
           </div>

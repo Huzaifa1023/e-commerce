@@ -26,7 +26,7 @@ const ProductCard = ({ product }: propType) => {
           layout="responsive"
         />
       </div>
-      <div className="bg-slate-100 h-full py-2 px-4">
+      <div className="bg-slate-100 dark:bg-secondaryDark h-full py-2 px-4">
         <h3 className="my-2 text-sm font-medium tracking-wide line-clamp-2 h-10">
           {product.title}
         </h3>

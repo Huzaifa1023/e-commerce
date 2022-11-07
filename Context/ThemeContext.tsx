@@ -18,7 +18,7 @@ export const ThemeContext = createContext<themeContextType>({
     notification: { message: "", visible: false,type:"info" }, showNotification: (message: string,type:themeContextType["notification"]["type"]) => { },
 });
 
-const ThemeProvider = ({ children }: proptype) => {
+const ContextThemeProvider = ({ children }: proptype) => {
     const [notification, setNotification] = useState<themeContextType["notification"]>({
         visible: false,
         message: "",
@@ -50,4 +50,4 @@ const ThemeProvider = ({ children }: proptype) => {
     )
 }
 
-export default ThemeProvider;
+export default ContextThemeProvider;

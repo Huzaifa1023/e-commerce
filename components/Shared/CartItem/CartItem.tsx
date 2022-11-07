@@ -16,8 +16,8 @@ const CartItem = ({ cart }: { cart: Isproduct }) => {
   }
 
   return (
-    <div className="px-4 my-2" key={cart.id}>
-      <div className="shadow-sm p-4">
+    <div className="px-4 my-2 " key={cart.id}>
+      <div className="shadow-sm p-4 dark:bg-secondaryDark rounded-md">
         <div className="flex">
           <Image src={cart.image} alt="" width={60} height={60} />
           <div className="ml-3 text-sm">

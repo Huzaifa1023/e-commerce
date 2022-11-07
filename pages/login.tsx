@@ -1,15 +1,27 @@
-import React, { useContext, useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useContext, useEffect, useState } from 'react';
 import { login } from '../api';
 import Button from '../components/Shared/Button';
 import Input from '../components/Shared/Input/Input';
 import { ThemeContext } from '../Context/ThemeContext';
-
+import helper from '../utils/helper';
 const Login = () => {
-    const {notification,showNotification} = useContext(ThemeContext)
+    const { showNotification } = useContext(ThemeContext)
+    const { setToLocalStorage, getLocalStorage } = helper;
+    const authenticated = getLocalStorage("auth");
+    const router = useRouter();
+    
     const [credentials, setCredentials] = useState({
         username: "",
         password:""
     })
+
+    useEffect(() => {
+        if (authenticated) {
+            router.push('/')
+        }
+    }, [router,authenticated])
+    
     const disabled = credentials.username.length < 1 || credentials.password.length < 1;
 
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -22,10 +34,16 @@ const Login = () => {
     }   
 
     const handleLogin = async () => {
-        // const {username,password} = credentials
-        // const response = await login(username, password)
-        showNotification("login succesfull","success")
+        const {username,password} = credentials
+        const response = await login(username, password)
+        if (response.success) {
+            showNotification(response.message, "success")
+            setToLocalStorage("auth",response.result)
+        } else {
+            showNotification(response.errors.length > 0 ?  response.errors[0] : response.message,"danger")
+        }
     }
+
 
     return (
         <div className='w-full h-screen bg-slate-100 flex justify-center items-center'>

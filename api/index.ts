@@ -1,4 +1,4 @@
-import { Iproduct, Isproduct } from "../model/responseType";
+import { authType, Iproduct, Isproduct } from "../model/responseType";
 
 export const getAllProducts = async (): Promise<Array<Iproduct>> => {
   return fetch("https://fakestoreapi.com/products")
@@ -16,13 +16,13 @@ export const getSinlgeProduct = async (id: any): Promise<Isproduct> => {
     });
 };
 
-export const login = async (username: string, password: string): Promise<{token:string}> => {
-  return fetch("https://fakestoreapi.com/auth/login", {
+export const login = async (email: string, password: string): Promise<authType> => {
+  const formData = new FormData()
+  formData.append("email", email);
+  formData.append("password", password)
+  return fetch("https://apingweb.com/api/login", {
     method: "POST",
-    body: JSON.stringify({
-      username, 
-      password
-    }),
+    body: formData
   })
     .then((res) => res.json())
     .then((json) => json)
